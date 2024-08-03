@@ -11,6 +11,8 @@ function Cities() {
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(false);
     const [image, setImage] = useState(null);
+    const [userEdit,setuserEdit] = useState(null)
+    const [form] = Form.useForm()
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const getApi = () => {
@@ -35,8 +37,8 @@ function Cities() {
 
 
         axios({
-            url: 'https://autoapi.dezinfeksiyatashkent.uz/api/cities',
-            method: "POST",
+            url: userEdit?`https://autoapi.dezinfeksiyatashkent.uz/api/cities/${userEdit.id}`:`https://autoapi.dezinfeksiyatashkent.uz/api/cities`,
+            method: userEdit?`PUT`:`POST`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -45,7 +47,7 @@ function Cities() {
             .then((data) => {
                 console.log(data?.data?.message)
                 if (data?.data?.success === true) {
-                    toast.success(data?.data?.message)
+                  userEdit?  toast.success("O'zgartirildi"):  toast.success(data?.data?.message)
                     getApi()
                     setIsModalOpen(false)
                 } else {
@@ -119,13 +121,19 @@ function Cities() {
         name: item.name,
         Text: item.text,
         images: (<img width={120} src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${item.image_src}`} />),
-        Action: (<><Button type='primary'>Edit</Button>
+        Action: (<><Button type='primary'onClick={()=>showModal(item)} >Edit</Button>
             <Button danger onClick={() => deleteCity(item.id)}>Delete</Button>
         </>),
     }));
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
+    const showModal = (item) => {
         setIsModalOpen(true);
+        setuserEdit(item)
+        form.setFieldValue({
+            name:item.name,
+            text:item.text,
+            images:[{uid:item.id, name:'image', url:`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${item.image_src}`}]
+        })
     };
     const handleOk = () => {
         setIsModalOpen(false);
@@ -135,7 +143,7 @@ function Cities() {
     };
     return (
         <div>
-            <Button style={{ margin: "30px" }} type="primary" onClick={showModal}>
+            <Button style={{ margin: "30px" }} type="primary" onClick={()=>setIsModalOpen(true)}>
                 Add
             </Button>
             <Table dataSource={dataSource}    pagination={{ pageSize: 10,}} columns={columns} loading={loading} />

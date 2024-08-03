@@ -29,8 +29,8 @@ const Home = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
     return (
-        <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Layout >
+            <Sider  trigger={null} collapsible collapsed={collapsed}>
                 <div className="demo-logo-vertical" />
                 <Menu 
                     active
@@ -46,11 +46,6 @@ const Home = () => {
                             key: '1',
                             icon: <UserOutlined />,
                             label: (<><NavLink to='/' active>Dashboard</NavLink></>),
-                        },
-                        {
-                            key: '2',
-                            icon: < MenuUnfoldOutlined />,
-                            label: (<><NavLink to='/settings' active >Settings</NavLink></>),
                         },
                         {
                             key: '3',
@@ -76,6 +71,11 @@ const Home = () => {
                             key: '7',
                             icon: <UploadOutlined />,
                             label: (<><NavLink to='/cars' active>Cars</NavLink></>),
+                        },
+                        {
+                            key: '2',
+                            icon: < MenuUnfoldOutlined />,
+                            label: (<><NavLink to='/settings' active >Settings</NavLink></>),
                         },
                     ]}
                 />
@@ -109,6 +109,7 @@ const Home = () => {
                     style={{
                         margin: '24px 16px',
                         padding: 24,
+                        overflow:scrollY,
                         minHeight: 280,
                         background: colorBgContainer,
                         borderRadius: borderRadiusLG,
