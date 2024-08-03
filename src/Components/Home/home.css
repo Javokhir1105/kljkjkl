@@ -1,0 +1,21 @@
+.ant-layout-sider-children{
+    position:  fixed;
+    top: 0;
+
+
+}
+.ant-layout-sider-dark{
+    top: -1;
+    left: 0;
+    width: auto;
+    height: 250vh !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    background: #001529 !important;
+}
+.ant-layout-content {
+    margin: 0px !important;
+    margin-top: 50px !important;
+    height: 600px;
+    padding: 0;
+    background: #4094f726 !important;
+}
