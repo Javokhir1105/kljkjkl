@@ -152,8 +152,8 @@ function Cities() {
                     <Form.Item label="Name" name='name'>
                         <Input placeholder='name' required />
                     </Form.Item>
-                    <Form.Item label="Car type" name='text'>
-                        <Input placeholder='car type' required />
+                    <Form.Item label="Text" name='text'>
+                        <Input placeholder='Text' required />
                     </Form.Item>
                     <Form.Item label="Images" name='image'>
                         <Input type='file' placeholder='images' onChange={(e) => setImage(e.target.files[0])} required />
