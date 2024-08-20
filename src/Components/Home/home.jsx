@@ -8,8 +8,6 @@ import {
     BarChartOutlined,
     CloudOutlined,
     AppstoreOutlined,
-    TeamOutlined,
-    ShopOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import Cities from '../Cities';
